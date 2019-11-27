@@ -49,7 +49,9 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
-        //
+        // to get the single item
+        $item = Item::find($id);
+        return response()->json($item);
     }
 
     /**
