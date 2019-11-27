@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item; // need to bring the model
+use Validator; // validator for api
 
 class ItemsController extends Controller
 {
@@ -40,10 +41,26 @@ class ItemsController extends Controller
     {
         // to post any kind if item
         // follwing code represent normal post method for our api
-        // but this can not handle error handling 
+        // but this can not handle error handling
         // $this->validate($request), [
         //   'text' => 'required'
         // ]
+        $validator = Validator::make($request->all(), [
+          'text' => 'required'
+        ]);
+
+        if($validator->fails()){
+          $response = array('response' => $validator->messages(), 'success' => false);
+          return $response;
+        } else {
+          // create item
+          $item = new Item;
+          $item->text = $request->input('text');
+          $item->body = $request->input('body');
+          $item->save();
+
+          return response()->json($item);
+        }
     }
 
     /**
