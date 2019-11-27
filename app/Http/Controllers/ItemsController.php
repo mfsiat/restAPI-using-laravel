@@ -38,7 +38,12 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // to post any kind if item
+        // follwing code represent normal post method for our api
+        // but this can not handle error handling 
+        // $this->validate($request), [
+        //   'text' => 'required'
+        // ]
     }
 
     /**
