@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Item Manager</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/itemapi/front-end/">Home</a>
+            </li>
+        </div>
+      </nav>
+<!-- fetch data from api 
+use jquery and js to insert them here as list item  -->
+
+
+      <div class="container">
+        <ul id="items" class="list-group"></ul>
+      </div>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      getItems();
+      function getItems() {
+        $.ajax({
+          url:'http://localhost/itemapi/back-end/public/api/items'
+        }).done(function(items){
+          console.log(items);
+        })
+      }
+    });
+  </script>
+</body>
+</html>
