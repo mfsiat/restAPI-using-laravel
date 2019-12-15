@@ -60,8 +60,23 @@ use jquery and js to insert them here as list item  -->
         // Delete event
         $('body').on('click', '.deleteLink', function(e) {
           e.preventDefault();
-          console.log('delete');
+
+          let id = $(this).data('id');
+
+          deleteItem(id);
         });
+
+        // Delete item through api 
+        function deleteItem(id){
+          $.ajax({
+            method: 'POST',
+            url: 'http://localhost/itemapi/back-end/public/api/items/'+id,
+            data: {_method: 'DELETE'}
+          }).done(function(item) {
+            alert('Item Removed');
+            location.reload();
+          });          
+        }
 
         // Insert items using API
         function addItem(text, body) {
