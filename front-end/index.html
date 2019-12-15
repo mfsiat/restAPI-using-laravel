@@ -40,6 +40,28 @@ use jquery and js to insert them here as list item  -->
     $(document).ready(function(){
       getItems();
 
+      // Submit event 
+      $('#itemForm').on('submit', function(e){
+        e.preventDefault();
+
+        let text = $('#text').val();
+        let body = $('#body').val();
+
+        addItem(text, body);
+      });
+
+      // Insert items using API 
+      function addItem(text, body){
+        $.ajax({
+          method: 'POST',
+          url: 'http://localhost/itemapi/back-end/public/api/items',
+          data: {text: text, body: body}
+        }).done(function(item){
+          alert('Item # '+item.id+' added');
+          location.reload();
+        });
+      }
+
 
       // Get Items from api 
       function getItems() {
