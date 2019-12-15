@@ -33,7 +33,15 @@ use jquery and js to insert them here as list item  -->
         $.ajax({
           url:'http://localhost/itemapi/back-end/public/api/items'
         }).done(function(items){
-          console.log(items);
+          let output = '';
+          $.each(items, function(key, item){
+            output += `
+              <li class="list-group-item">
+                <strong>${item.text}: </strong>${item.body}
+              </li>
+            `
+          });
+          $('#items').append(output);
         })
       }
     });
