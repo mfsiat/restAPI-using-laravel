@@ -58,16 +58,19 @@
 
   ```js
 
-      function getItems() {
-        $.ajax({url: 'http://localhost/itemapi/back-end/public/api/items'}).done    (function(items) { let output = '';
+    function getItems() {
+      $.ajax({url: 'http://localhost/itemapi/back-end/public/api/items'}).done(
+        function(items) { 
+          let output = '';
           $.each(items, function(key, item) { output +=
           ` <li class="list-group-item">
-              <strong>${item.text}: </strong>${item.body} <a href="#" class="deleteLink" data-id="${item.id}">Delete</a>
+              <strong>${item.text}: </strong>${item.body} 
+              <a href="#" class="deleteLink" data-id="${item.id}">Delete</a>
             </li>
           ` ;
           });
             $('#items').append(output);
-          });
-      }
+        });
+    }
 
   ```
