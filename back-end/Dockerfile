@@ -12,6 +12,6 @@ COPY . .
 
 RUN composer install
 
-EXPOSE 8080
+EXPOSE 8000
 
 ENTRYPOINT [ "php", "artisan", "serve" ]
