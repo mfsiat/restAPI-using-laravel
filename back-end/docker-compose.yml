@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  client:
+    build: ./
+    command: tail -f /dev/null
+    ports:
+      - 5500:8000
+    volumes:
+      - ./:/app
+    entrypoint: ./init.sh
+
+networks:
+  default:
+    external:
+      name: jc-bot
