@@ -11,7 +11,11 @@ WORKDIR /app
 COPY . .
 
 RUN composer install
+RUN php artisan optimize:clear
+RUN php artisan cache:clear
+RUN php artisan config:clear
+RUN php artisan key:generate
 
 EXPOSE 8000
 
-ENTRYPOINT [ "php", "artisan", "serve" ]
+ENTRYPOINT [ "php", "artisan", "serve", "--host", "0.0.0.0" ]
